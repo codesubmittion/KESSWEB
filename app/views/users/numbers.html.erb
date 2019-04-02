@@ -23,6 +23,33 @@
 						</tr>
 					</tbody>
 			</table>
+			<p style="background-color:rgba(200,0,0,0.5); color:white; text-align:center;">Associate member only</p>
+			<table class="table table-hover">
+				<thead>
+					<tr class="info">
+						<th>Home</th>
+						<th>Drama</th>
+						<th>3 section</th>
+						<th>Total</th>
+					</tr>
+				</thead>
+				<tbody>
+					<% ["Aoyama","Mita","Yokohama"].each do |home| %>
+						<tr>
+							<th><%=home %></th>
+							<td><%=cal_member("Associate",home,"1","Drama") %></td>
+							<td><%=cal_member("Associate",home,"1","null")-cal_member("Associate",home,"1","Drama") %></td>
+							<td><%= cal_member("Associate",home,"1","null") %></td>
+						</tr>
+					<% end %>
+						<tr class="active">
+							<th>Total</th>
+							<td><%=cal_member("Associate","null","1","Drama") %></td>
+							<td><%=cal_member("Associate","null","1","null")-cal_member("Associate","null","1","Drama") %></td>
+							<td>/</td>
+						</tr>
+				</tbody>
+			</table>
 
 			<p style="background-color:rgba(200,0,0,0.5); color:white; text-align:center;">Regular member only</p>
 		<% for num in 1..4 do %>
