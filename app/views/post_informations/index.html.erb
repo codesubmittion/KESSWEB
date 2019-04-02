@@ -1,0 +1,32 @@
+
+<div class="container">
+	<div class="row">
+		<div class="col-lg-10 col-offset-2">
+			<div class="page-header">
+				<h1>Informations</h1>
+			</div>
+			<table class="table table-hover">
+				<thead>
+					<tr class="info">
+						<th>Title</th>
+						<th>Place</th>
+						<th>Date</th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					<% @post_informations.each do |post_information| %>
+						<tr>
+							<th><%=link_to post_information.title, post_information_path(post_information) %></th>
+							<th><%=post_information.place %></th>
+							<th><%=post_information.date %></th>
+							<% if judge(current_user)>=2 %>
+								<th><%=link_to "delete", post_information_path(post_information), method: :delete, data: {confirm: "Are you sure?"}, :class=>"btn btn-danger btn-sm" %></th>
+							<% end %>
+						</tr>
+					<% end %>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>

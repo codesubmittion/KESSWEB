@@ -1,0 +1,60 @@
+<!-- post_blogのindexを兼ねる -->
+<div class="container">
+	<div class="row">
+		<div class="col-lg-12">
+			<% if image_posted? %>
+				<%= attachment_image_tag @post_image, :main_image, :fill, 1000, 800,fallback:"main_image_default.jpg" %>
+			<% else %>
+				<img src="main_image_default.jpg">
+			<% end %>
+		</div>
+	</div>
+</div>
+<div class="container">
+	<div class="row">
+		<div class="col-lg-12">
+			<div class="container">
+	<div class="row">
+		<div class="col-lg-10 col-offset-2">
+			<div class="page-header">
+				<h1>What's new?</h1>
+			</div>
+			<table class="table table-hover">
+				<thead>
+					<tr class="info">
+						<th>Title</th>
+						<th>Content</th>
+					</tr>
+				</thead>
+				<tbody>
+					<% @post_blogs.each do |post_blog| %>
+						<tr>
+							<th><%= post_blog.title %></th>
+							<th><%=post_blog.content %></th>
+					<% end %>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-lg-4">
+		</div>
+		<div class="col-lg-4">
+			<span ><%=link_to "Sign up", new_user_registration_path, :class=>"btn btn-block btn-info" %></span>
+		</div>
+		<div class="col-lg-4">
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-lg-4">
+		</div>
+		<div class="col-lg-4">
+			<span><%=link_to "Log in", new_user_session_path, :class=>"btn btn-block btn-success" %></span>
+		</div>
+		<div class="col-lg-4">
+		</div>
+	</div>
+</div>

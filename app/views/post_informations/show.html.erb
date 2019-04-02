@@ -1,0 +1,38 @@
+
+<div class="container">
+	<div class="row">
+		<div class="col-md-6 col-md-offset-3">
+			<div class="page-header">
+				<h1>Information Detail</h1>
+			</div>
+			<table class="table">
+				<thead>
+					<tr>
+						<th>Title:  <%=@post_information.title %></th>
+					</tr>
+				</thead>
+				<thead>
+					<tr>
+						<th>Place:  <%=@post_information.place %></th>
+					</tr>
+				</thead>
+				<thead>
+					<tr>
+						<th>Date:  <%=@post_information.date %></th>
+					</tr>
+				</thead>
+				<thead>
+					<tr>
+						<th>Comment:  <%=@post_information.comment %></th>
+					</tr>
+				</thead>
+				<thead>
+					<tr>
+						<th><%= attachment_image_tag @post_information, :image, :fill, 600, 600, format: 'jpeg', fallback: "no_image.jpg", :size=>"600×600" %></th>
+					</tr>
+				</thead>
+			</table>
+		</div>
+	</div>
+</div>
+

@@ -1,0 +1,100 @@
+<!-- members -->
+<div class="container">
+	<div class="row">
+		<div class="col-lg-5">
+			<div class="page-header">
+				<% if judge(current_user)>=3 %>
+					<h1><%=link_to "Numbers", numbers_path %></h1>
+				<% else %>
+					<h1>Numbers</h1>
+				<% end %>
+			</div>
+				<table class="table">
+					<thead>
+						<tr class="info">
+							<th>Membership(Regular)</th>
+							<th>Membership(Associate)</th>
+							<th>Quorum</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<th><%=cal_member("Regular")%></th>
+							<!-- <th><%=cal_regular_membership %></th> -->
+							<th><%=cal_member("Associate")%></th>
+							<!-- <th><%=cal_associate_membership %></th> -->
+							<th><%=cal_quorum %></th>
+						</tr>
+					</tbody>
+				</table>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-lg-10">
+			<div class="row">
+				<div class="col-lg-10">
+				<div class="page-header">
+					<h1>Members</h1>
+				</div>
+				</div>
+				<div class="col-lg-2">
+					<label>Look Up</label>
+					<%=form_tag(users_path,:method=>"get") do %>
+					<%=text_field_tag :search, "#{params[:search]}" %>
+					<%=submit_tag "Search", :name=>nil, :class=>"btn  btn-success btn-xs" %>
+					<% end %>
+				</div>
+			</div>
+			<table class="table table-hover">
+				<thead>
+					<tr class="info">
+						<th><%=sortable "firstname","Name" %></th>
+						<th><%=sortable "home","Home" %></th>
+						<th><%=sortable "section","Section" %></th>
+						<th><%=sortable "grade","Grade" %></th>
+						<th><%=sortable "faculty","Faculty" %></th>
+						<th><%=sortable "authority","Authority" %></th>
+						<!-- 日吉委員以上 -->
+						<% if judge(current_user)>=3 %>
+							<th><%=sortable "status", "Status" %></th>
+						<% end %>
+						<!-- 中コミ以上 -->
+						<% if judge(current_user)>=4 %>
+							<th></th>
+						<% end %>
+					</tr>
+				</thead>
+				<tbody>
+					<% @users.each do |user| %>
+						<tr>
+							<th><%=link_to "#{user.firstname+" "+user.lastname}", user_path(user) %></th>
+							<th><%=user.home %></th>
+							<th><%=user.section %></th>
+							<th><%=user.grade %></th>
+							<th><%=user.faculty %></th>
+							<th><%=user.authority %></th>
+							<!-- 日吉委員以上 -->
+						<% if judge(current_user)>=3 %>
+							 <% if user.status=="Associate" %>
+							 	<th class="btn btn-block btn-primary"><%=user.status %></th>
+							 <% elsif user.status=="Regular" %>
+							 	<th class="btn btn-block btn-success"><%=user.status %></th>
+							 <% elsif user.status=="Seceder" %>
+							 	<th class="btn btn-block btn-warning"><%=user.status %></th>
+							 <% elsif user.status=="Expelled" %>
+							 	<th class="btn btn-block btn-danger"><%=user.status %></th>
+							 <% else %>
+							 	<th class="btn btn-block btn-info"><%=user.status %></th>
+							 <% end %>
+						<% end %>
+						<!-- 中コミ以上 -->
+						<%if judge(current_user)>=4 %>
+							<th><%=link_to "edit", edit_user_path(user), :class=>"btn btn-block btn-danger" %></th>
+						<% end %>
+						</tr>
+					<% end %>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>

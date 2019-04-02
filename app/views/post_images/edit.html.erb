@@ -1,0 +1,45 @@
+<section class="slice sct-color-1">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+
+        <div class="row">
+          <div class="col-md-6  post_image_form">
+            <div class="section-title-wrapper style-1 v1">
+              <h3 class="section-title section-title-sm left">
+                <span>Change Images</span>
+              </h3>
+            </div>
+
+            <%= form_for(@post_image) do |f| %>
+              <% if @post_image.errors.any? %>
+                <div id="error_explanation">
+                  <ul>
+                  <% @post_image.errors.full_messages.each do |message| %>
+                    <li><%= message %></li>
+                  <% end %>
+                  </ul>
+                </div>
+              <% end %>
+              <div class="row">
+                <div class="col-sm-12">
+                  <span>Main Image</span>
+                  <%= f.attachment_field :main_image %>
+                </div>
+              </div>
+              <br>
+             <div class="row">
+                <div class="col-sm-12">
+                  <span>Sub Image</span>
+                  <%= f.attachment_field :sub_image %>
+                </div>
+              </div>
+              <br>
+              <%= f.submit "Change", class:"btn btn-lg btn-block btn-base-1 mt-20 btn-warning" %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

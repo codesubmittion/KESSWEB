@@ -1,0 +1,52 @@
+
+<div class="container">
+	<div class="row">
+		<div class="col-lg-10 col-offset-2">
+			<div class="page-header">
+				<h1>Applications</h1>
+			</div>
+			<table class="table table-hover">
+				<thead>
+					<tr class="info">
+						<th>Target(Grade_Home_Section)</th>
+						<th>Title</th>
+						<th>Place</th>
+						<th>Date</th>
+						<th>Deadline</th>
+						<th>Reply?</th>
+						<th colspan="2"></th>
+					</tr>
+				</thead>
+				<tbody>
+					<% @post_applications.each do |post_application| %>
+					<!-- アプリケ対象者または委員なら表示 -->
+						<% if aimed?(post_application,current_user) || judge(current_user)>=3 %>
+							<tr>
+								<th class="btn btn-success btn-block"><%=post_application.target_grade+"_"+post_application.target_home+"_"+post_application.target_section %></th>
+								<th><%=link_to post_application.title, post_application_path(post_application) %></th>
+								<th><%=post_application.place %></th>
+								<th><%=post_application.date %></th>
+								<th class="warning"><%=post_application.deadline %></th>
+							<% if aimed?(post_application,current_user) %>
+								<% if post_application.responded_by?(current_user) %>
+									<th class="btn btn-xs btn-success">Done!</th>
+								<% else %>
+		  						    <th class="btn btn-xs btn-danger">Yet!</th>
+								<% end %>
+							<% else %>
+							<!-- 委員として管理しているだけなら -->
+									<th class="btn btn-xs btn-info">Unnecessary</th>
+							<% end %>
+								<% if judge(current_user)>=3 %>
+									<th><%=link_to "Delete", post_application_path(post_application), method: :delete, data: {confirm: "Are you sure?"}, :class=>"btn btn-danger btn-sm" %></th>
+									<th><%=link_to "Edit", edit_post_application_path(post_application), :class=>"btn btn-warning btn-sm" %>
+								<% end %>
+							</tr>
+						<% end %>
+					<% end %>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
+

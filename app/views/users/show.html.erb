@@ -1,0 +1,73 @@
+
+
+
+<div class="container">
+	<div class="row">
+		<div class="col-md-6">
+			<div class="page-header">
+				<% if @user==current_user %>
+					<h1>My Page</h1>
+				<% else %>
+					<h1>Member Detail</h1>
+				<% end %>
+			</div>
+			<table class="table">
+				<thead>
+					<tr>
+						<th>Name:  <%=@user.char_lastname+" "+@user.char_firstname+" ("+@user.ruby_lastname+" "+@user.ruby_firstname+")" %> </th>
+					</tr>
+				</thead>
+				<thead>
+					<tr>
+						<th>Firstname:  <%=@user.firstname %> </th>
+					</tr>
+				</thead>
+				<thead>
+					<tr>
+						<th>Lastname:  <%=@user.lastname %></th>
+					</tr>
+				</thead>
+				<thead>
+					<tr>
+						<th>Faculty:  <%=@user.faculty %></th>
+					</tr>
+				</thead>
+				<thead>
+					<tr>
+						<th>Grade:  <%=@user.grade %></th>
+					</tr>
+				</thead>
+				<thead>
+					<tr>
+						<th>Home:  <%=@user.home %></th>
+					</tr>
+				</thead>
+				<thead>
+					<tr>
+						<th>Section: <%=@user.section %></th>
+					</tr>
+				</thead>
+				<thead>
+					<tr>
+						<th>Authority: <%=@user.authority %></th>
+					</tr>
+				</thead>
+				<thead>
+					<tr>
+						<% if @user.status=="Expelled" %>
+						  <th class="btn btn-danger btn-block">Status: <%=@user.status  %></th>
+						<% elsif @user.status=="Seceder" %>
+						  <th class="btn btn-warning btn-block">Status: <%=@user.status%></th>
+						<% elsif @user.status=="Graduated" %>
+						  <th class="btn btn-info btn-block">Status: <%=@user.status%></th>
+						<% elsif @user.status=="Regular" %>
+						  <th class="btn btn-success btn-block">Status: <%=@user.status %></th>
+						<% elsif @user.status=="Associate" %>
+						  <th class="btn btn-primary btn-block">Status: <%=@user.status %></th>
+						<% end %>
+					</tr>
+				</thead>
+			</table>
+		</div>
+	</div>
+</div>

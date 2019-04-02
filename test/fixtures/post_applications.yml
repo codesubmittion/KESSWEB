@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyText
+  user_id: 1
+  comment: MyText
+  place: MyText
+  date: 2019-03-14 13:00:09
+  deadline: 2019-03-14 13:00:09
+
+two:
+  title: MyText
+  user_id: 1
+  comment: MyText
+  place: MyText
+  date: 2019-03-14 13:00:09
+  deadline: 2019-03-14 13:00:09

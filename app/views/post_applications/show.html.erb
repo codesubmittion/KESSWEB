@@ -1,0 +1,129 @@
+
+<!-- new＿post_application_post_application_response/ post_application_post_application_responsesを兼ねる-->
+<%=form_for [@post_application, @post_application_response] do |f| %>
+<div id="error_explanation">
+		<% if @post_application_response.errors.any? %>
+			<ul>
+				<% @post_application_response.errors.full_messages.each do |message| %>
+					<li><%=message %></li>
+				<% end %>
+			</ul>
+		<% end %>
+</div>
+<div class="container">
+	<div class="row">
+		<div class="col-md-6 ">
+			<div class="page-header">
+				<h1>Application Detail</h1>
+			</div>
+			<table class="table">
+				<thead>
+					<tr>
+						<th>Title:  <%=@post_application.title %></th>
+					</tr>
+				</thead>
+				<thead>
+					<tr>
+						<th>Place:  <%=@post_application.place %></th>
+					</tr>
+				</thead>
+				<thead>
+					<tr>
+						<th>Date:  <%=@post_application.date %></th>
+					</tr>
+				</thead>
+				<thead>
+					<tr>
+						<th>Deadline:  <%=@post_application.deadline %></th>
+					</tr>
+				</thead>
+				<thead>
+					<tr>
+						<th>Comment: <%=@post_application.comment %>
+					</tr>
+				</thead>
+			</table>
+			<% if aimed?(@post_application,current_user) %>
+			<table class="table">
+				<tbody>
+					<tr>
+							<div class="page-header">
+								<h1>Reply</h1>
+							</div>
+					</tr>
+					<tr>
+								<div class="field">
+									<label>participate?</label>
+									<%=f.select :participation, [["Yes","〇"],["Partially, Yes","△"],["No","✕"],["Not sure","?"]] %>
+								</div>
+					</tr>
+					<tr>
+								<div class="field">
+									<p>For those who answered "Partially, Yes" above </p>
+									<label>From when to when you can come</label>
+										<%=f.text_field :caption %>
+								</div>
+					</tr>
+					<tr>
+								<div class="field">
+									<p>For those who answered "No" above </p>
+									<label>Reason why you cannot come</label>
+									<%=f.select :reason, [["Academics","Academics"],["Part-time jobs","Part-time jobs"],["Ceremonial occasions","Ceremonial occasions"],["Disease","Disease"],["Previous engagement","Previous engagement"],["Others","Others"]], :include_blank => true %>
+								</div>
+					</tr>
+			    	<tr>
+								<% if @post_application.responded_by?(current_user) %>
+									<%=f.submit "Update", :class=>"btn btn-info btn-block" %>
+								<% else %>
+									<%=f.submit "Respond", :class=>"btn btn-info btn-block" %>
+								<% end %>
+				    </tr>
+				</body>
+			</table>
+			<% end %>
+		</div>
+		<div class="col-md-3">
+			<div class="page-header">
+				<h1>Response</h1>
+			</div>
+			<table class="table table-hover">
+				<thead>
+					<tr class="info">
+						<th>Username</th>
+						<th>Reply?</th>
+						<th colspan="4"></th>
+					</tr>
+				</thead>
+				<tbody>
+					<% @users.each do |user| %>
+						<% if aimed?(@post_application,user) %>
+						<tr>
+							<th><%=link_to "#{user.firstname+" "+user.lastname}", user_path(user) %></th>
+							<% if @post_application.responded_by?(user) %>
+								<th class="btn btn-xs btn-success">Done!</th>
+								<% @post_application_responses.each do |post_application_response| %>
+									<% if post_application_response.user_id==user.id %>
+										<th><%=post_application_response.participation %></th>
+										<% if post_application_response.participation=="✕" %>
+											<th><%= post_application_response.reason %></th>
+										<% elsif post_application_response.participation=="△" %>
+											<th><%=post_application_response.caption %></th>
+										<% else %>
+											<th>All Day</th>
+										<% end %>
+									<% end %>
+								<% end %>
+							<% else %>
+								<th class="btn btn-xs btn-danger">Yet!</th>
+							<% end %>
+						</tr>
+						<% end %>
+					<% end %>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
+<% end %>
+
+

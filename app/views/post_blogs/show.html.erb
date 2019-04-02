@@ -1,0 +1,26 @@
+<div class="container">
+	<div class="row">
+		<div class="col-md-6 col-md-offset-3">
+			<div class="page-header">
+				<h1>Blog Detail</h1>
+			</div>
+			<table class="table">
+				<thead>
+					<tr>
+						<th>Title:  <%=@post_blog.title %></th>
+					</tr>
+				</thead>
+				<thead>
+					<tr>
+						<th>Content:  <%=@post_blog.content %></th>
+					</tr>
+				</thead>
+				<thead>
+					<tr>
+						<th><%= attachment_image_tag @post_blog, :image, :fill, 600, 600, format: 'jpeg', fallback: "no_image.jpg", :size=>"600×600" %></th>
+					</tr>
+				</thead>
+			</table>
+		</div>
+	</div>
+</div>

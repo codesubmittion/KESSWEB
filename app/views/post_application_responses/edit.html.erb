@@ -1,0 +1,27 @@
+<%=form_for(@post_application_response, url: post_application_responses_path) do |f| %>
+	<div id="error_explanation">
+		<% if @post_application_response.errors.any? %>
+			<ul>
+				<% @post_application_response.errors.full_messages.each do |message| %>
+					<li><%=message %></li>
+				<% end %>
+			</ul>
+		<% end %>
+	</div>
+
+	<div>
+		<label>participate?</label>
+		<%=f.select :participation, [["Yes","〇"],["Partially, Yes","△"],["No","☓"],["Not sure","?"]] %>
+	</div>
+	<div>
+		<p>For those who answered "Partially, Yes" above </p>
+		<label>from when to when you can come</label>
+		<%=f.test_field :caption %>
+	</div>
+	<div>
+		<p>For those who answered "No" above </p>
+		<label>reason why you cannot come</label>
+		<%=f.select :reason, [["Academics","Academics"],["Part-time jobs","Part-time jobs"],["Ceremonial occasions","Ceremonial occasions"],["Disease","Disease"],["Previous engagement","Previous engagement"],["Others","Others"]] %>
+	</div>
+	<%=f.submit "Respond" %>
+<% end %>

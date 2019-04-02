@@ -1,0 +1,77 @@
+<div class="container">
+	<div class="row">
+		<div class="col-lg-10">
+			<div class="page-header">
+				<h2>Numbers</h2>
+			</div>
+			<table class="table table-hover">
+					<thead>
+						<tr class="success"><th>Total</th></tr>
+						<tr class="info">
+							<th>Membership(Regular)</th>
+							<th>Membership(Associate)</th>
+							<th>Quorum</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<th><%=cal_member("Regular")%></th>
+							<!-- <th><%=cal_regular_membership %></th> -->
+							<th><%=cal_member("Associate")%></th>
+							<!-- <th><%=cal_associate_membership %></th> -->
+							<th><%=cal_quorum %></th>
+						</tr>
+					</tbody>
+			</table>
+
+			<p style="background-color:rgba(200,0,0,0.5); color:white; text-align:center;">Regular member only</p>
+		<% for num in 1..4 do %>
+			<table class="table table-hover">
+				<thead>
+						<% if num==1 %>
+							<tr class="warning"><th>Freshmen</th></tr>
+						<% elsif num==2 %>
+							<tr class="warning"><th>Sophomore</th></tr>
+						<% elsif num==3 %>
+							<tr class="warning"><th>Junior</th></tr>
+						<% else%>
+							<tr class="warning"><th>Senior</th></tr>
+						<% end %>
+						<tr class="info">
+							<th>Home</th>
+					<% ["Discussion","Debate","Speech","Drama"].each do |section| %>
+							<th><%= section%></th>
+					<% end %>
+							<th>Total</th>
+						</tr>
+				</thead>
+				<tbody>
+					<% section_total=[0,0,0,0] %>
+					<% count=0 %>
+						<% ["Aoyama","Mita","Yokohama"].each do |home| %>
+							<tr>
+								<th><%= home %></th>
+								<% home_total=0 %>
+									<% ["Discussion","Debate","Speech","Drama"].each do |section| %>
+										<% section_total[count]+=cal_member("Regular",home,num,section) %>
+										<% count+=1 %>
+									<% home_total+=cal_member("Regular",home,num,section) %>
+										<td><%=cal_member("Regular",home,num,section)%></td>
+									<% end %>
+								<td><%=home_total %></td>
+							</tr>
+							<% count=0 %>
+						<% end %>
+						<tr class="active">
+							<th>Total</th>
+							<% for n in 0..3 do %>
+								<td><%=section_total[n] %></td>
+							<% end %>
+							<td>/</td>
+						</tr>
+				</tbody>
+			</table>
+		<% end %>
+		</div>
+	</div>
+</div>
