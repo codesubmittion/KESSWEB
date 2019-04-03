@@ -42,6 +42,9 @@
             <nav class="col-lg-2 sidebar" style=" background-color:#383838;">
               <div class="sidebar-sticky">
                 <ul class="nav flex-column nav-sidebar">
+                  <% if judge(current_user)<=1 %>
+                    <li class="nav-item">No option is available</li>
+                  <% end %>
                   <% if judge(current_user)>=2 %>
                     <li class="nav-item"><%=link_to "Post Infomation", new_post_information_path %></li>
                   <% end %>

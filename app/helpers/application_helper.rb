@@ -26,6 +26,7 @@ module ApplicationHelper
 
 # アプリケの対象者ならばtrueが返る
   def aimed?(post_application,user)
+    #退会者、卒業者、除名者にアプリケは送らない
       unless user.status=="Regular" || user.status=="Associate"
         return false
       end

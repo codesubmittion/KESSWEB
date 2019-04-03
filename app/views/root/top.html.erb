@@ -3,7 +3,7 @@
 	<div class="row">
 		<div class="col-lg-12">
 			<% if image_posted? %>
-				<%= attachment_image_tag @post_image, :main_image, :fill, 1000, 800,fallback:"main_image_default.jpg" %>
+				<%= attachment_image_tag @post_image, :main_image, :fill, 1000, 800,fallback:"main_image_default.jpg" ,:size=>"1000×800"%>
 			<% else %>
 				<img src="main_image_default.jpg">
 			<% end %>

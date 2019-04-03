@@ -47,8 +47,8 @@ ActiveRecord::Schema.define(version: 2019_03_29_083226) do
   end
 
   create_table "post_images", force: :cascade do |t|
-    t.string "main_image_id", default: "main_image_default.jpg"
-    t.string "sub_image_id", default: "sub_image_default.jpg"
+    t.string "main_image_id"
+    t.string "sub_image_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

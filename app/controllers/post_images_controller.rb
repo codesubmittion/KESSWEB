@@ -31,7 +31,7 @@ class PostImagesController < ApplicationController
   end
 
   private
-  	def post_image_params
-			params.require(:post_image).permit(:main_image, :sub_image)
-	end
+    def post_image_params
+			   params.require(:post_image).permit(:main_image, :sub_image)
+	  end
 end
