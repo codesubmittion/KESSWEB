@@ -11,7 +11,9 @@
 						<th>Title</th>
 						<th>Place</th>
 						<th>Date</th>
-						<th></th>
+						<% if judge(current_user)>=2 %>
+							<th colspan="2"></th>
+						<% end %>
 					</tr>
 				</thead>
 				<tbody>
@@ -22,6 +24,8 @@
 							<th><%=post_information.date %></th>
 							<% if judge(current_user)>=2 %>
 								<th><%=link_to "delete", post_information_path(post_information), method: :delete, data: {confirm: "Are you sure?"}, :class=>"btn btn-danger btn-sm" %></th>
+								<th><%=link_to "edit", edit_post_information_path(post_information), :class=>"btn btn-warning btn-sm" %>
+								</th>
 							<% end %>
 						</tr>
 					<% end %>

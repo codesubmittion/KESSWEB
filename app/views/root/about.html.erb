@@ -1,1 +1,183 @@
-<h1>about page</h1>
+<header id="header">
+			<div class="container">
+
+				<div class="navbar-header">
+					<!-- Logo -->
+					<div class="navbar-brand">
+						<span class="logo color-info">KESS</span>
+					</div>
+					<!-- /Logo -->
+
+					<!-- Mobile toggle -->
+					<button class="navbar-toggle">
+						<span></span>
+					</button>
+					<!-- /Mobile toggle -->
+				</div>
+
+				<!-- Navigation -->
+				<nav id="nav">
+					<ul class="main-menu nav navbar-nav navbar-right">
+						<li><%=link_to "Top", top_path %></li>
+						<li><%=link_to "About", about_path %></li>
+						<li><%=link_to "Blog", root_post_blogs_path %></li>
+						<li><%=link_to "Contact", contact_path %></li>
+					<% if user_signed_in? %>
+						<li><%=link_to "Back", post_informations_path %></li>
+					<% else %>
+						<li><%=link_to "Sign up", new_user_registration_path %></li>
+						<li><%=link_to "Log in", new_user_session_path %></li>
+					<% end %>
+					</ul>
+				</nav>
+				<!-- /Navigation -->
+
+			</div>
+		</header>
+		<!-- /Header -->
+
+		<!-- Hero-area -->
+		<div class="hero-area section">
+			<!-- Backgound Image -->
+			<div class="bg-image bg-parallax overlay" style="background-image:url(<%= asset_path 'main_image_default.jpg' %>)"></div>
+			<!-- /Backgound Image -->
+
+			<div class="container">
+				<div class="row">
+					<div class="col-md-10 col-md-offset-1 text-center">
+						<ul class="hero-area-tree">
+							<li><%=link_to "Top", top_path %></li>
+							<li>About</li>
+						</ul>
+						<h1 class="white-text">Learn more about us</h1>
+
+					</div>
+				</div>
+			</div>
+
+		</div>
+		<!-- /Hero-area -->
+
+		<!-- Contact -->
+		<div id="contact" class="section">
+
+			<!-- container -->
+			<div class="container">
+
+				<!-- row -->
+				<div class="row">
+					<!-- contact form -->
+					<div class="col-md-6">
+						<p>
+							慶應義塾大学英語會（Keio English Speaking Society）<br>
+…通称「K.E.S.S.（けす）」創立126年の慶應公認団体<br>
+
+日本最大規模のESSを誇る。<br>
+
+「英語によるCommunication能力の向上」を目標として掲げ、英語力の向上だけでなく、論理的に意見を創造するための活動を行っている。そのため就職活動ではトップを走る将来が約束されている。
+
+Debate・Discussion・Drama・SpeechのSectionに分かれ、幅広く、日々活動に励んでいる。
+						</p>
+					</div>
+					<!-- /contact form -->
+
+					<!-- contact information -->
+					<div class="col-md-5 col-md-offset-1">
+						<h4>Contact Information</h4>
+						<ul class="contact-details">
+							<li><i class="fas fa-envelope"></i>presskess@gmail.com</li>
+							<li><i class="fas fa-phone"></i>122-547-223-45</li>
+						</ul>
+
+						<!-- contact map -->
+					<!-- 	<div id="contact-map"></div> -->
+						<!-- /contact map -->
+
+					</div>
+					<!-- contact information -->
+
+				</div>
+				<!-- /row -->
+
+			</div>
+			<!-- /container -->
+
+		</div>
+		<!-- /Contact -->
+
+		<!-- Footer -->
+		<footer id="footer" class="section">
+
+			<!-- container -->
+			<div class="container">
+
+				<!-- row -->
+				<div class="row">
+
+					<!-- footer logo -->
+					<div class="col-md-6">
+						<div class="footer-logo">
+						<!-- 	<a class="logo" href="index.html">
+								<img src="./img/logo.png" alt="logo">
+							</a> -->
+							<span>Keio English Speaking Society</span>
+						</div>
+					</div>
+					<!-- footer logo -->
+
+					<!-- footer nav -->
+					<div class="col-md-6">
+						<ul class="footer-nav">
+							<li><%=link_to "Top", top_path %></li>
+							<li><%=link_to "About", about_path %></li>
+							<li><%=link_to "Blog", root_post_blogs_path %></li>
+							<li><%=link_to "Contact", contact_path %></li>
+						</ul>
+					</div>
+					<!-- /footer nav -->
+
+				</div>
+				<!-- /row -->
+
+				<!-- row -->
+				<div id="bottom-footer" class="row">
+
+					<!-- social -->
+					<div class="col-md-4 col-md-push-8">
+						<ul class="footer-social">
+							<!-- <li><a href="#" class="facebook"><i class="fa fa-facebook"></i></a></li> -->
+							<li><a href="https://twitter.com/2019kess" class="twitter"><i class="fab fa-twitter"></i></a></li>
+							<!-- <li><a href="#" class="google-plus"><i class="fa fa-google-plus"></i></a></li> -->
+							<li><a href="https://www.instagram.com/2019kess/" class="instagram"><i class="fab fa-instagram"></i></a></li>
+							<!-- <li><a href="#" class="youtube"><i class="fa fa-youtube"></i></a></li>
+							<li><a href="#" class="linkedin"><i class="fa fa-linkedin"></i></a></li> -->
+						</ul>
+					</div>
+					<!-- /social -->
+
+					<!-- copyright -->
+					<div class="col-md-8 col-md-pull-4">
+						<div class="footer-copyright">
+							<span>&copy; Copyright 2018. All Rights Reserved. | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com">Colorlib</a></span>
+						</div>
+					</div>
+					<!-- /copyright -->
+
+				</div>
+				<!-- row -->
+
+			</div>
+			<!-- /container -->
+
+		</footer>
+		<!-- /Footer -->
+
+		<!-- preloader -->
+		<div id='preloader'><div class='preloader'></div></div>
+		<!-- /preloader -->
+
+		<!-- jQuery Plugins -->
+	<!-- 	<%= javascript_include_tag 'jquery.min.js' %> -->
+		<%= javascript_include_tag 'bootstrap.min.js' %>
+	<!-- 	<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script> -->
+		<%= javascript_include_tag 'main.js' %>

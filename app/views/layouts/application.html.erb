@@ -23,10 +23,13 @@
               <li><%=link_to "Information", post_informations_path %></li>
               <li><%=link_to "Application", post_applications_path %></li>
               <li><%=link_to "My page", user_path(current_user) %></li>
+              <li><%=link_to "Home", top_path %></li>
               <li><%=link_to "Log out", destroy_user_session_path, method: :delete %></li>
             <% else %>
               <li><%=link_to "Top", top_path %></li>
               <li><%=link_to "About", about_path %></li>
+              <li><%=link_to "Blog", root_post_blogs_path %></li>
+              <li><%=link_to "Contact", contact_path %></li>
               <li><%=link_to "Sign up", new_user_registration_path %></li>
               <li><%=link_to "Log in", new_user_session_path %></li>
             <% end %>
@@ -57,6 +60,7 @@
                        <li class="nav-item"><%=link_to "Post Image", new_post_image_path %></li>
                     <% end %>
                     <li class="nav-item"><%=link_to "Number", numbers_path %></li>
+                    <li class="nav-item"><%=link_to "Inquiry", inquiries_path %></li>
                   <% end %>
                   <!-- 管理者ページへのリンク -->
                   <% if current_user.try(:admin?) %>

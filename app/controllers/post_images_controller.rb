@@ -17,14 +17,20 @@ class PostImagesController < ApplicationController
 
   def create
   	@post_image=PostImage.new(post_image_params)
-  	@post_image.save
-  	redirect_to top_path
+  	if @post_image.save
+    	redirect_to top_path
+    else
+      render :new
+    end
   end
 
   def update
   	@post_image=PostImage.find(params[:id])
-  	@post_image.update(post_image_params)
-  	redirect_to top_path
+  	if @post_image.update(post_image_params)
+  	 redirect_to top_path
+    else
+      render :edit
+    end
   end
 
   def destroy

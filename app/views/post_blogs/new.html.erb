@@ -11,11 +11,11 @@
               </h3>
             </div>
 
-            <%= form_for(@post_blog, url: post_blogs_path) do |f| %>
+            <%= form_for (@post_blog)do |f| %>
               <% if @post_blog.errors.any? %>
                 <div id="error_explanation">
-                  <ul>
-                  <% @post_information.errors.full_messages.each do |message| %>
+                  <ul class="alert alert-danger" role="alert">
+                  <% @post_blog.errors.full_messages.each do |message| %>
                     <li><%= message %></li>
                   <% end %>
                   </ul>
@@ -42,7 +42,7 @@
                   <%= f.text_area :content, class:"form-control", rows:"3", placeholder:"Comment" %>
                 </div>
               </div>
-              <%= f.submit "Add", class:"btn btn-lg btn-block btn-base-1 mt-20 btn-info" %>
+              <%= f.submit "Add", data: {confirm:"Everyone in the world can read this blog. Are you sure?"}, class:"btn btn-lg btn-block btn-base-1 mt-20 btn-danger" %>
             <% end %>
           </div>
         </div>

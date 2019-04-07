@@ -1,7 +1,16 @@
 class ApplicationController < ActionController::Base
+
+# Author:Kazuya Fujita, 2019/04/06
 	before_action :configure_permitted_parameters, if: :devise_controller?
-	before_action :authenticate_user!, except: [:top, :about]
+	# inquiryのためにcreateをokにしているが、本来はよくないと思う。
+	before_action :authenticate_user!, except: [:top, :about, :contact, :root_show, :root_index, :create]
+
 	include ApplicationHelper
+
+
+	def inquirys_controller?
+		false
+	end
 
 	protected
 

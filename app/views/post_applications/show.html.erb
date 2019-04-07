@@ -3,7 +3,7 @@
 <%=form_for [@post_application, @post_application_response] do |f| %>
 <div id="error_explanation">
 		<% if @post_application_response.errors.any? %>
-			<ul>
+			<ul class="alert alert-danger" role="alert">
 				<% @post_application_response.errors.full_messages.each do |message| %>
 					<li><%=message %></li>
 				<% end %>

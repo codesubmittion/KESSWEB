@@ -14,7 +14,7 @@
             <%= form_for(@post_information, url: post_informations_path) do |f| %>
               <% if @post_information.errors.any? %>
                 <div id="error_explanation">
-                  <ul>
+                  <ul class="alert alert-danger" role="alert">
                   <% @post_information.errors.full_messages.each do |message| %>
                     <li><%= message %></li>
                   <% end %>

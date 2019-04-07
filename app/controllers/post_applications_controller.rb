@@ -13,7 +13,7 @@ class PostApplicationsController < ApplicationController
 		if @post_application.save
 				redirect_to post_applications_path
 		else
-			redirect_to new_post_application_path
+			render :new
 		end
 	end
 
@@ -48,8 +48,11 @@ class PostApplicationsController < ApplicationController
 
 	def update
 		@post_application=PostApplication.find(params[:id])
-		@post_application.update(post_application_params)
-		redirect_to post_application_path(@post_application)
+		if @post_application.update(post_application_params)
+			redirect_to post_application_path(@post_application)
+		else
+			render :edit
+		end
 	end
 
 	def destroy

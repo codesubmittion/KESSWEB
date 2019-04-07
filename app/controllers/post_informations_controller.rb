@@ -6,12 +6,21 @@ class PostInformationsController < ApplicationController
 			redirect_to post_informations_path
 		end
 	end
-
+	def edit
+		if judge(current_user)>=2
+			@post_information=PostInformation.find(params[:id])
+		else
+			redirect_to post_informations_path
+		end
+	end
 	def create
 		@post_information=PostInformation.new(post_information_params)
 		@post_information.user_id=current_user.id
-		@post_information.save
-		redirect_to post_informations_path
+		if @post_information.save
+			redirect_to post_informations_path
+		else
+			render :new
+		end
 	end
 
 	def index

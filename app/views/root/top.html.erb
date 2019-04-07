@@ -1,5 +1,393 @@
 <!-- post_blogのindexを兼ねる -->
-<div class="container-fluid top">
+	<!-- Header -->
+		<header id="header" class="transparent-nav">
+			<div class="container">
+
+				<div class="navbar-header">
+					<!-- Logo -->
+					<div class="navbar-brand">
+						<span class="logo" style="color:white;">KESS</span>
+					</div>
+					<!-- /Logo -->
+
+					<!-- Mobile toggle -->
+					<button class="navbar-toggle">
+						<span></span>
+					</button>
+					<!-- /Mobile toggle -->
+				</div>
+
+				<!-- Navigation -->
+				<nav id="nav">
+					<ul class="main-menu nav navbar-nav navbar-right">
+						<li><%=link_to "Top", top_path %></li>
+						<li><%=link_to "About", about_path %></li>
+						<li><%=link_to "Blog", root_post_blogs_path %></li>
+						<li><%=link_to "Contact", contact_path %></li>
+					<% if user_signed_in? %>
+						<li><%=link_to "Back", post_informations_path %></li>
+					<% else %>
+						<li><%=link_to "Sign up", new_user_registration_path %></li>
+						<li><%=link_to "Log in", new_user_session_path %></li>
+					<% end %>
+					</ul>
+				</nav>
+				<!-- /Navigation -->
+
+			</div>
+		</header>
+		<!-- /Header -->
+
+		<!-- Home -->
+		<div id="home" class="hero-area">
+			<!-- Backgound Image -->
+			<div class="bg-image bg-parallax overlay" style="background-image:url(<%= asset_path 'main_image_default.jpg' %>)"></div>
+			<!-- /Backgound Image -->
+
+			<div class="home-wrapper">
+				<div class="container">
+					<div class="row">
+						<div class="col-md-8">
+							<h1 class="white-text">Keio English Speaking Society</h1>
+							<p class="lead white-text">This is the largest ESS in Japan.</p>
+							<%=link_to "Learn More", about_path, class:"main-button icon-botton" %>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+		<!-- /Home -->
+
+		<!-- About -->
+		<div id="about" class="section">
+
+			<!-- container -->
+			<div class="container">
+
+				<!-- row -->
+				<div class="row">
+
+					<div class="col-md-6">
+						<div class="section-header">
+							<h2>Welcome to K.E.S.S.</h2>
+							<p class="lead">We have four sections, discussion, debate, speech, and drama.</p>
+						</div>
+
+						<!-- feature -->
+						<div class="feature">
+							<i class="feature-icon fas fa-project-diagram"></i>
+							<div class="feature-content">
+								<h4>Discussion Section </h4>
+								<p>Discuss a certain matter concerning the policy of the Japanese Government</p>
+							</div>
+						</div>
+						<!-- /feature -->
+
+						<!-- feature -->
+						<div class="feature">
+							<i class="feature-icon fas fa-code-branch"></i>
+							<div class="feature-content">
+								<h4>Debate Section</h4>
+								<p>Divided into two positions, argue on a certain issue</p>
+							</div>
+						</div>
+						<!-- /feature -->
+
+						<!-- feature -->
+						<div class="feature">
+							<i class="feature-icon fas fa-volume-up"></i>
+							<div class="feature-content">
+								<h4>Speech Section</h4>
+								<p>Give a speech in front of huge audience on a certain topic</p>
+							</div>
+						</div>
+						<!-- /feature -->
+
+						<!-- feature -->
+						<div class="feature">
+							<i class="feature-icon fab fa-react"></i>
+							<div class="feature-content">
+								<h4>Drama Section</h4>
+								<p>Give a drama in front of huge audience on a certain script</p>
+							</div>
+						</div>
+						<!-- /feature -->
+
+					</div>
+
+					<div class="col-md-6">
+						<div class="about-img">
+							<%=attachment_image_tag @post_image, :main_image, :fill, 500, 500 %>
+						</div>
+					</div>
+
+				</div>
+				<!-- row -->
+
+			</div>
+			<!-- container -->
+		</div>
+		<!-- /About -->
+
+		<!-- Courses -->
+		<div id="courses" class="section">
+
+			<!-- container -->
+			<div class="container">
+
+				<!-- row -->
+				<div class="row">
+					<div class="section-header text-center">
+						<h2>Explore Blogs</h2>
+						<p class="lead">Learn more about what we are doing</p>
+					</div>
+				</div>
+				<!-- /row -->
+
+				<!-- courses -->
+				<div id="courses-wrapper">
+
+					<!-- row -->
+					<div class="row">
+
+						<!-- single course -->
+					<% count =0 %>
+					<% @post_blogs.each do |post_blog| %>
+						<% if count==4 %>
+							<% break %>
+						<% end %>
+						<div class="col-md-3 col-sm-6 col-xs-6">
+							<div class="course">
+									<%=link_to (attachment_image_tag post_blog, :image, :fill, 500, 500), root_post_blog_path(post_blog) ,class:"course-img" %>
+								<%=link_to "#{post_blog.title}", root_post_blog_path(post_blog), class:"course-title" %>
+								<div class="course-details">
+									<span class="course-category"><%=post_blog.category %></span>
+									<span class="course-price course-free"><%=post_blog.created_at %></span>
+								</div>
+							</div>
+						</div>
+					<% count+=1 %>
+					<% end %>
+						<!-- /single course -->
+					</div>
+					<!-- /row -->
+				</div>
+				<!-- /courses -->
+
+				<div class="row">
+					<div class="center-btn">
+						<%=link_to "More Blogs", root_post_blogs_path, class:"main-button icon-button" %>
+					</div>
+				</div>
+
+			</div>
+			<!-- container -->
+
+		</div>
+		<!-- /Courses -->
+
+		<!-- Call To Action -->
+		<div id="cta" class="section">
+
+			<!-- Backgound Image -->
+			<div class="bg-image bg-parallax overlay" style="background-image:url(<%= asset_path 'main_image_default2.jpg' %>)"></div>
+			<!-- /Backgound Image -->
+
+			<!-- container -->
+			<div class="container">
+
+				<!-- row -->
+				<div class="row">
+
+					<div class="col-md-6">
+						<h2 class="white-text">If you are permitted to join us officially,</h2>
+						<p class="lead white-text">you need to sign up first.</p>
+						<%=link_to "Sign up", new_user_registration_path, class:"main-button icon-button" %>
+					</div>
+
+				</div>
+				<!-- /row -->
+
+			</div>
+			<!-- /container -->
+
+		</div>
+		<!-- /Call To Action -->
+
+		<!-- Why us -->
+		<div id="why-us" class="section">
+
+			<!-- container -->
+			<div class="container">
+
+				<!-- row -->
+				<div class="row">
+					<div class="section-header text-center">
+						<h2>Our Strength</h2>
+						<p class="lead">We have tons of strength, and these are only part of them.</p>
+					</div>
+
+					<!-- feature -->
+					<div class="col-md-4">
+						<div class="feature">
+							<i class="feature-icon fas fa-user-alt"></i>
+							<div class="feature-content">
+								<h4>Community</h4>
+								<p>We have <%=@users.count %> members, which is one of the largest scales.</p>
+							</div>
+						</div>
+					</div>
+					<!-- /feature -->
+
+					<!-- feature -->
+					<div class="col-md-4">
+						<div class="feature">
+							<i class="feature-icon fas fa-trophy"></i>
+							<div class="feature-content">
+								<h4>Achievement</h4>
+								<p>We have achieved a immense number of records. </p>
+							</div>
+						</div>
+					</div>
+					<!-- /feature -->
+
+					<!-- feature -->
+					<div class="col-md-4">
+						<div class="feature">
+							<i class="feature-icon fas fa-tasks"></i>
+							<div class="feature-content">
+								<h4>Opportunity</h4>
+								<p>We can offer you oppotunities to manage one of the greatest competition, meeting and so on.</p>
+							</div>
+						</div>
+					</div>
+					<!-- /feature -->
+
+				</div>
+				<!-- /row -->
+
+			<!-- 	<hr class="section-hr"> -->
+
+				<!-- /row -->
+
+			</div>
+			<!-- /container -->
+
+		</div>
+		<!-- /Why us -->
+
+		<!-- Contact CTA -->
+		<div id="contact-cta" class="section">
+
+			<!-- Backgound Image -->
+			<div class="bg-image bg-parallax overlay" style="background-image:url(<%=asset_path"main_image_default2.jpg" %>"></div>
+			<!-- Backgound Image -->
+
+			<!-- container -->
+			<div class="container">
+
+				<!-- row -->
+				<div class="row">
+
+					<div class="col-md-8 col-md-offset-2 text-center">
+						<h2 class="white-text">Contact Us</h2>
+						<p class="lead white-text">If you have any questions about us, please feel free to contact us.</p>
+						<%=link_to "Contact Us Now", contact_path , class:"main-button icon-button" %>
+					</div>
+
+				</div>
+				<!-- /row -->
+
+			</div>
+			<!-- /container -->
+
+		</div>
+		<!-- /Contact CTA -->
+
+		<!-- Footer -->
+		<footer id="footer" class="section">
+
+			<!-- container -->
+			<div class="container">
+
+				<!-- row -->
+				<div class="row">
+
+					<!-- footer logo -->
+					<div class="col-md-6">
+						<div class="footer-logo">
+								<span class="logo">Keio English Speaking Society</span>
+								<!-- <img src="./img/logo.png" alt="logo"> -->
+						</div>
+					</div>
+					<!-- footer logo -->
+
+					<!-- footer nav -->
+					<div class="col-md-6">
+						<ul class="footer-nav">
+							<li><%=link_to "Top", top_path %></li>
+							<li><%=link_to "About", about_path %></li>
+							<li><%=link_to "Blog", root_post_blogs_path %></li>
+							<li><%=link_to "Contact", contact_path %></li>
+						</ul>
+					</div>
+					<!-- /footer nav -->
+
+				</div>
+				<!-- /row -->
+
+				<!-- row -->
+				<div id="bottom-footer" class="row">
+
+					<!-- social -->
+					<div class="col-md-4 col-md-push-8">
+						<ul class="footer-social">
+							<!-- <li><a href="#" class="facebook"><i class="fa fa-facebook"></i></a></li> -->
+							<li><a href="https://twitter.com/2019kess" class="twitter"><i class="fab fa-twitter"></i></a></li>
+							<!-- <li><a href="#" class="google-plus"><i class="fa fa-google-plus"></i></a></li> -->
+							<li><a href="https://www.instagram.com/2019kess/" class="instagram"><i class="fab fa-instagram"></i></a></li>
+							<!-- <li><a href="#" class="youtube"><i class="fa fa-youtube"></i></a></li>
+							<li><a href="#" class="linkedin"><i class="fa fa-linkedin"></i></a></li> -->
+						</ul>
+					</div>
+					<!-- /social -->
+
+					<!-- copyright -->
+					<div class="col-md-8 col-md-pull-4">
+						<div class="footer-copyright">
+							<span>&copy; Copyright 2018. All Rights Reserved. | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com">Colorlib</a></span>
+						</div>
+					</div>
+					<!-- /copyright -->
+
+				</div>
+				<!-- row -->
+
+			</div>
+			<!-- /container -->
+
+		</footer>
+		<!-- /Footer -->
+
+		<!-- preloader -->
+		<div id='preloader'><div class='preloader'></div></div>
+
+
+
+		<!-- jQuery Plugins -->
+	<!-- 	<%= javascript_include_tag 'jquery.min.js' %> -->
+		<%= javascript_include_tag 'bootstrap.min.js' %>
+		<!-- <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script> -->
+		<%= javascript_include_tag 'main.js' %>
+
+
+
+
+
+
+
+<!-- <div class="container-fluid top">
 	<div class="row-fluid">
 		<div class="col-lg-12">
 			<% if image_posted? %>
