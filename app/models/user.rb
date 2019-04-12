@@ -7,6 +7,7 @@ class User < ApplicationRecord
   has_many :post_applications, dependent: :destroy
   has_many :post_application_responses, dependent: :destroy
   has_many :post_blogs, dependent: :destroy
+  has_many :post_files, dependent: :destroy
 
 
   validates :firstname, presence: true

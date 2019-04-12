@@ -24,6 +24,23 @@ module ApplicationHelper
   	end
   end
 
+# fileの対象者ならばtrueが返る
+  def file_target?(post_file,user)
+    if post_file.target_authority=="0" || post_file.target_authority<=judge(current_user)
+      return true
+    else
+      unless post_file.target_grade=="All" || post_file.target_grade==current_user.grade
+        return false
+      end
+      unless post_file.target_home=="All" || post_file.target_home==current_user.home
+        return false
+      end
+      unless post_file.target_section=="All" || post_file.target_section==current_user.section
+        return false
+      end
+      return true
+    end
+  end
 # アプリケの対象者ならばtrueが返る
   def aimed?(post_application,user)
     #退会者、卒業者、除名者にアプリケは送らない

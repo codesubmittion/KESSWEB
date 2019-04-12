@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_04_080717) do
+ActiveRecord::Schema.define(version: 2019_04_12_050955) do
 
   create_table "inquiries", force: :cascade do |t|
     t.string "name"
@@ -52,6 +52,20 @@ ActiveRecord::Schema.define(version: 2019_04_04_080717) do
     t.text "category"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "post_files", force: :cascade do |t|
+    t.string "title"
+    t.text "caption"
+    t.integer "user_id"
+    t.string "file_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "target_grade"
+    t.string "target_section"
+    t.string "target_home"
+    t.string "target_authority"
+    t.string "file_filename"
   end
 
   create_table "post_images", force: :cascade do |t|

@@ -1,0 +1,36 @@
+
+<div class="container">
+	<div class="row">
+		<div class="col-lg-10 col-offset-2">
+			<div class="page-header">
+				<h1>Files</h1>
+			</div>
+			<table class="table table-hover">
+				<thead>
+					<tr class="info">
+						<th>Filename</th>
+						<th>Caption</th>
+						<th colspan="1"></th>
+						<% if judge(current_user)>=3 %>
+							<th colspan="1"></th>
+						<% end %>
+					</tr>
+				</thead>
+				<tbody>
+					<% @post_files.each do |post_file| %>
+						<% if file_target?(post_file,current_user) %>
+							 <tr>
+								<th><%=post_file.file_filename %></th>
+								<th><%=post_file.caption %></th>
+								<th><%=link_to "Download",attachment_url(post_file, :file), class:"btn btn-info btn-block" %></th>
+								<% if judge(current_user)>=3 %>
+									<th><%=link_to "Delete", post_file_path(post_file), method: :delete, data:{confirm:"Are you sure?"}, class:"btn btn-danger btn-xs" %></th>
+								<% end %>
+							</tr>
+						<% end %>
+					<% end %>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>

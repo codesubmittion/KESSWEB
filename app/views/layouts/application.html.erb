@@ -19,6 +19,7 @@
         <nav>
           <ul class="nav navbar-nav navbar-right">
             <% if user_signed_in? %>
+              <li><%=link_to "File", post_files_path %></li>
               <li><%=link_to "Member", users_path %></li>
               <li><%=link_to "Information", post_informations_path %></li>
               <li><%=link_to "Application", post_applications_path %></li>
@@ -53,6 +54,7 @@
                   <% end %>
                   <% if judge(current_user)>=3 %>
                     <li class="nav-item"><%=link_to "Post Application", new_post_application_path %></li>
+                    <li class="nav-item"><%=link_to "Post File", new_post_file_path %></li>
                     <li class="nav-item"><%=link_to "Post Blog", new_post_blog_path %></li>
                     <% if image_posted? %>
                        <li class="nav-item"><%=link_to "Change Image", edit_post_image_path(image_last_id) %></li>

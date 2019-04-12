@@ -1,0 +1,77 @@
+<section class="slice sct-color-1">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+
+        <div class="row">
+          <div class="col-md-6  post_image_form">
+            <div class="section-title-wrapper style-1 v1">
+              <h3 class="section-title section-title-sm left">
+                <span>Post File</span>
+              </h3>
+            </div>
+
+            <%= form_for(@post_file, url: post_files_path) do |f| %>
+              <% if @post_file.errors.any? %>
+                <div id="error_explanation">
+                  <ul class="alert alert-danger" role="alert">
+                  <% @post_file.errors.full_messages.each do |message| %>
+                    <li><%= message %></li>
+                  <% end %>
+                  </ul>
+                </div>
+              <% end %>
+              <br>
+              <div class="row">
+                <div class="col-sm-6">
+                  <div class="form-group has-icon">
+                    <label>Target</label><br/>
+                    <%=f.label :Target_Grade %><br/>
+                    <%= f.select :target_grade,[["All","All"],["Freshmen","1"],["Sophomore","2"],["Junior","3"],["Senior","4"]]%><br/>
+                     <%=f.label :Target_Section %><br/>
+                    <%= f.select :target_section,[["All","All"],["Discussion","Discussion"],["Debate","Debate"],["Speech","Speech"],["Drama","Drama"]]%><br/>
+                      <%=f.label :Target_Home %><br/>
+                    <%= f.select :target_home,[["All","All"],["Aoyama","Aoyama"],["Mita","Mita"],["Yokohama","Yokohama"]]%><br/>
+                    <%=f.label :Target_Authority %><br/>
+                    <%= f.select :target_authority,[["All","0"],["Over Hiyoshi Committee","3"],["Over Central Committee","4"]]%><br/>
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-6">
+                  <div class="form-group has-icon">
+                    <label>File</label>
+                    <%= f.attachment_field :file%>
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-12">
+                  <%= f.text_area :caption, class:"form-control", rows:"3", placeholder:"Caption" %>
+                </div>
+              </div>
+              <%= f.submit "Post", class:"btn btn-lg btn-block btn-base-1 mt-20 btn-info" %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+

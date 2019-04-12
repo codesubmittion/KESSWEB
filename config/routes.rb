@@ -17,6 +17,10 @@ Rails.application.routes.draw do
   resources :post_informations
   resources :post_images, :except=>[:index]
   resources :users
+  resources :post_files
+
+  # get "post_files/:id/download"=> "post_files#download", as:"post_file_download"
+  
 # 自分で定義
   # get "users/edit/all"=>"users#edit_all", as:"edit_all_users"
   # patch "users/update/all"=>"users#update_all", as:"update_all_users"
